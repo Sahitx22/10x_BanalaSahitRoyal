@@ -1,0 +1,17 @@
+<launch>
+
+  <!-- Turtlebot3 Gazebo -->
+  <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch"/>
+
+  <!-- Path smoothing -->
+  <node pkg="path_smoothing_ros" type="demo" name="path_smoothing_demo" output="screen">
+    <rosparam file="$(find path_smoothing_ros)/config/path.yaml"/>
+  </node>
+
+  <!-- Trajectory generator -->
+  <node pkg="path_smoothing_ros" type="trajectory_generator" name="trajectory_generator" output="screen"/>
+
+  <!-- Pure Pursuit controller -->
+  <node pkg="path_smoothing_ros" type="pure_pursuit_controller" name="pure_pursuit" output="screen"/>
+
+</launch>

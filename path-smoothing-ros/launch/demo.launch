@@ -1,0 +1,29 @@
+<launch>
+
+  <arg name="rviz" default="true" />
+
+  <group if="$(arg rviz)">
+    <include file="$(find path_smoothing_ros)/launch/rviz.launch" />
+  </group>
+
+  <node
+    name="path_smoothing_demo"
+    pkg="path_smoothing_ros"
+    type="demo"
+    output="screen">
+
+    <rosparam file="$(find path_smoothing_ros)/config/path.yaml" command="load" />
+
+  </node>
+  
+    <node
+    name="trajectory_generator"
+    pkg="path_smoothing_ros"
+    type="trajectory_generator"
+    output="screen" />
+    
+    <node pkg="path_smoothing_ros" type="trajectory_follower" name="trajectory_follower" output="screen"/>
+
+
+
+</launch>
